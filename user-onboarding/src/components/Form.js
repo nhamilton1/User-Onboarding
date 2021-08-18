@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Form(props) {
 
-    const { values, submit, change, disabled } = props
+    const { values, submit, change, disabled, setFormErrors } = props
 
     const onSubmit = evt => {
         evt.preventDefault()
@@ -13,6 +13,7 @@ export default function Form(props) {
         const { name, value, type, checked } = evt.target
         const valueToUse = type === 'checkbox' ? checked : value
         change(name, valueToUse)
+        // setFormErrors({ ...values, [name]: valueToUse})
       }
 
     return(
