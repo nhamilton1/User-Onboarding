@@ -58,7 +58,8 @@ function App() {
   }
 
   const validate = (name, value) => {
-    yup.reach(schema, name)
+    yup
+      .reach(schema, name)
       .validate(value)
       .then(() => setFormErrors({ ...formErrors, [name]: '' }))
       .catch(err => setFormErrors({ ...formErrors, [name]: err.errors[0] }))
@@ -82,7 +83,7 @@ function App() {
     postNewUser(newUser)
   }
 
-  useEffect(() => {
+  useEffect((users) => {
     schema.isValid(users)
     .then(valid => setDisabled(!valid))
   }, [formValues])
@@ -91,11 +92,11 @@ function App() {
 
   useEffect(() => {
     schema.isValid(formValues).then(valid => setDisabled(!valid))
-  }, [])
+  }, [formValues])
 
   return (
     <div className='container'>
-      <h1>Test</h1>
+      <h1>User list</h1>
       <Form 
       values={formValues}
       change={inputChange}
@@ -103,9 +104,14 @@ function App() {
       disabled={disabled}
       errors={formErrors}
       />
-      {users.map(user => {
-        return ( <Users key={user.id} users={user}/>)
-      })}
+      {
+      users.map(user => {
+        return ( 
+        <Users key={user.id} users={user}
+        />
+        )
+      })
+      }
     </div>
   );
 }
