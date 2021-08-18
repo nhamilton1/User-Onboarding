@@ -2,7 +2,7 @@ import * as yup from 'yup'
 
 
 
-export default yup.object().shape({
+const formSchema = yup.object().shape({
     username: yup.string()
         .required('Username is required')
         .min(3, 'Username must be 3 characters or longer'),
@@ -17,7 +17,7 @@ export default yup.object().shape({
         
 })
 
-
+export default formSchema
 
 
 
