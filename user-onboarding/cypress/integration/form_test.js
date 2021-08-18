@@ -22,6 +22,13 @@ describe('Form', () => {
         emailInput().should('exist')
     })
     
+    describe('using assertion to check text input', () => {
+        it('text input contains name that was provided', () => {
+            nameInput()
+                .type('Name')
+                .should('have.value', 'Name')
+        })
+    })
 
     describe('Filling out inputs', () => {
         it('can type inside the name input', () => {
@@ -63,4 +70,17 @@ describe('Form', () => {
         })
     })
 
+    describe('Form validation ', () => {
+        it('checking form validation', () => {
+            nameInput().type('te')
+            submitBtn().should('be.disabled')
+            emailInput().type('username123gmail.com')
+            submitBtn().should('be.disabled')
+            passwordInput().type('passw')
+            submitBtn().should('be.disabled')
+            checkboxInput().click()
+            submitBtn().should('be.disabled')
+        })
+
+    })
 })
