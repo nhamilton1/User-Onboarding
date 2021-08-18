@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Form(props) {
 
-    const { values, submit, change } = props
+    const { values, submit, change, disabled } = props
 
     const onSubmit = evt => {
         evt.preventDefault()
@@ -30,7 +30,7 @@ export default function Form(props) {
                     value={values.password}
                     onChange={onChange}
                     name='password'
-                    type='text'
+                    type='password'
                 />
             </label>
             <label>Email:
@@ -39,6 +39,7 @@ export default function Form(props) {
                     onChange={onChange}
                     name='email'
                     type='text'
+                    
                 />
            </label>
            <label>Terms of service:
@@ -49,7 +50,7 @@ export default function Form(props) {
                     onChange={onChange}
                 />
           </label>
-          <button>submit</button>
+          <button disabled={disabled}>submit</button>
         </form>
     )
 }

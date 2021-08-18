@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import Form from './components/Form'
+import Users from './components/User';
 
 const initialFormValues = {
   username: '',
@@ -10,11 +11,13 @@ const initialFormValues = {
 }
 
 const initialUsers = []
+const initialDisabled = true
 
 function App() {
   
-  const [friends, setFriends] = useState(initialUsers)
+  const [users, setUsers] = useState(initialUsers)
   const [formValues, setFormValues] = useState(initialFormValues)
+  const [disabled, setDisabled] = useState(initialDisabled)
 
   const inputChange = (name, value) => {
     setFormValues({
@@ -41,7 +44,15 @@ function App() {
       values={formValues}
       change={inputChange}
       submit={formSubmit}
+      disabled={disabled}
       />
+      {
+        users.map((users, index) => {
+          return (
+            <Users key={index} users={users}/>
+          )
+        })
+      }
     </div>
   );
 }
